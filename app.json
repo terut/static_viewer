@@ -2,6 +2,5 @@
   "name": "Static Viewer",
   "description": "A static file viewer with heroku",
   "repository": "https://github.com/terut/static_viewer",
-  "logo": "",
   "keywords": ["ruby", "sinatra", "static"]
 }
