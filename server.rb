@@ -1,6 +1,6 @@
 require 'sinatra'
 
-module Pebbles
+module StaticViewer
   class Server < Sinatra::Base
     get '/' do
       'Hello World'
