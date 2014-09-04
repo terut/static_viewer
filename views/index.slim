@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Static Viewer
+    //script src="/static_viewer/js/jquery.min.js"
+    script src="/static_viewer/js/angular.min.js"
+    script src="/static_viewer/js/app.js"
+  body ng-app="StaticViewer"
+    header
+      h1 Static Viewer
+    section#content
+      h1 Tree
+      div ng-controller="Tree"
+    #json data-json="#{@tree}"
