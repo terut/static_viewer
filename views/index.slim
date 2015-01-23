@@ -2,13 +2,12 @@ doctype html
 html
   head
     title Static Viewer
-    //script src="/static_viewer/js/jquery.min.js"
-    script src="/static_viewer/js/angular.min.js"
-    script src="/static_viewer/js/app.js"
-  body ng-app="StaticViewer"
+    link rel="stylesheet" href="/css/style.css" type="text/css"
+  body
     header
       h1 Static Viewer
     section#content
-      h1 Tree
-      div ng-controller="Tree"
-    #json data-json="#{@tree}"
+      ul
+        - @repos.each do |repo|
+          li
+            a href="/repos/#{repo}"=repo

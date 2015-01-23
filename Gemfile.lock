@@ -3,6 +3,7 @@ GEM
   specs:
     daemons (1.1.9)
     eventmachine (1.0.3)
+    git (1.2.9.1)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -24,6 +25,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  git
   sinatra
   slim
   thin
