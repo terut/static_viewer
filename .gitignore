@@ -3,3 +3,4 @@
 *.swp
 bower_components
 public/test
+repos/*
