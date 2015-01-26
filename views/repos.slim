@@ -8,7 +8,11 @@ html
     header
       h1 Static Viewer
     section#content
-      p= @g.current_branch
+      form action="/repos/#{params[:name]}/pull" method="post"
+        input type="submit" name="" value="Sync"
+      div
+        span Current branch:
+        span.bold= @g.current_branch
       form action="/repos/#{params[:name]}/checkout" method='post'
         span Select branch:
         select name="branch"

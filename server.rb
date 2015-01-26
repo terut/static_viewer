@@ -42,14 +42,18 @@ module StaticViewer
       redirect "/repos/#{params[:name]}"
     end
 
-    # TODO check remote branches
     post '/repos/:name/checkout' do
       working_dir = "repos/#{params[:name]}"
       g = Git.open(working_dir, log: nil)
-      if params[:name] != "master"
-        g.is_branch?(params[])
-        g.checkout()
+      g.checkout
+
+      if params[:branch] != "master" && !params[:branch].start_with?("HEAD") && g.is_local_branch?(params[:branch])
+        pp "hoge"
+        g.branch(params[:branch]).delete
       end
+      g.checkout(params[:branch])
+
+      redirect "/repos/#{params[:name]}"
     end
 
     get '/views/*' do
