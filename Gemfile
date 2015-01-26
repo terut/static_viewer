@@ -5,3 +5,4 @@ gem 'sinatra'
 gem 'thin'
 gem 'slim'
 gem 'git'
+gem "rack-contrib", require: "rack/contrib"

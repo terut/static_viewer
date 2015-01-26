@@ -8,6 +8,9 @@ module StaticViewer
     #use Rack::Auth::Basic, "Restricted Area" do |username, password|
     #  username == ENV['AUTH_USENAME'] and password == ENV['AUTH_PASSWORD']
     #end
+    use Rack::Access, {
+      '/' => ENV['ALLOW_IPS'].split(',')
+    } if ENV['ALLOW_IPS']
 
     get '/' do
       @repos = Dir.chdir("repos") { Dir.glob("*") }
