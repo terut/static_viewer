@@ -13,13 +13,13 @@ module StaticViewer
     } if ENV['ALLOW_IPS']
 
     get '/' do
-      @repos = Dir.chdir("repos") { Dir.glob("*") }
+      @repos = Dir.chdir("#{settings.root}/repos") { Dir.glob("*") }
 
       slim :index
     end
 
     get '/repos/:name' do
-      working_dir = "repos/#{params[:name]}"
+      working_dir = "#{settings.root}/repos/#{params[:name]}"
       @g = Git.open(working_dir, log: nil)
       tree = { name: params[:name], children: tree(working_dir) }
       @tree = JSON.dump(tree)
@@ -30,13 +30,13 @@ module StaticViewer
     post '/repos' do
       url = params[:url]
       name = params[:name]
-      g = Git.clone(url, name, path: 'repos/')
+      g = Git.clone(url, name, path: "#{settings.root}/repos/")
 
       redirect '/'
     end
 
     post '/repos/:name/pull' do
-      working_dir = "repos/#{params[:name]}"
+      working_dir = "#{settings.root}/repos/#{params[:name]}"
       g = Git.open(working_dir, log: nil)
       g.checkout
       g.fetch('origin', { p: true })
@@ -46,7 +46,7 @@ module StaticViewer
     end
 
     post '/repos/:name/checkout' do
-      working_dir = "repos/#{params[:name]}"
+      working_dir = "#{settings.root}/repos/#{params[:name]}"
       g = Git.open(working_dir, log: nil)
       g.checkout
 
