@@ -17,15 +17,39 @@ module StaticViewer
 
     get '/repos/:name' do
       working_dir = "repos/#{params[:name]}"
-      g = Git.open(working_dir, log: nil)
-      puts g.branches.remote.collect { |branch| branch.name } 
+      @g = Git.open(working_dir, log: nil)
       tree = { name: params[:name], children: tree(working_dir) }
       @tree = JSON.dump(tree)
 
       slim :repos
     end
 
-    post '/repos/:name/pulls' do
+    post '/repos' do
+      url = params[:url]
+      name = params[:name]
+      g = Git.clone(url, name, path: 'repos/')
+
+      redirect '/'
+    end
+
+    post '/repos/:name/pull' do
+      working_dir = "repos/#{params[:name]}"
+      g = Git.open(working_dir, log: nil)
+      g.checkout
+      g.fetch('origin', { p: true })
+      g.merge("origin/#{g.current_branch}")
+
+      redirect "/repos/#{params[:name]}"
+    end
+
+    # TODO check remote branches
+    post '/repos/:name/checkout' do
+      working_dir = "repos/#{params[:name]}"
+      g = Git.open(working_dir, log: nil)
+      if params[:name] != "master"
+        g.is_branch?(params[])
+        g.checkout()
+      end
     end
 
     get '/views/*' do

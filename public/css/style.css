@@ -13,3 +13,6 @@ ul {
   line-height: 1.5em;
   list-style-type: dot;
 }
+form input, select {
+  margin-right: 10px;
+}

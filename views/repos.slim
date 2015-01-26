@@ -8,6 +8,13 @@ html
     header
       h1 Static Viewer
     section#content
+      p= @g.current_branch
+      form action="/repos/#{params[:name]}/checkout" method='post'
+        span Select branch:
+        select name="branch"
+          - @g.branches.remote.each do |remote|
+            option value="#{remote.name}"=remote.name
+        input type="submit" name="" value="select"
       ul id="demo"
         li class="item" v-component="item" v-with="model: treeData"
     #json data-json="#{@tree}"
