@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title Static Viewer
+    link rel="stylesheet" href="/css/style.css" type="text/css"
+    script src="//cdnjs.cloudflare.com/ajax/libs/vue/0.11.4/vue.min.js"
+  body
+    header
+      h1 Static Viewer
+    section#content
+      form action="/repos/#{params[:name]}/pull" method="post"
+        input type="submit" name="" value="Sync"
+      div
+        span Current branch:
+        span.bold= @g.current_branch
+      form action="/repos/#{params[:name]}/checkout" method='post'
+        span Select branch:
+        select name="branch"
+          - @g.branches.remote.each do |remote|
+            option value="#{remote.name}"=remote.name
+        input type="submit" name="" value="select"
+      ul id="tree"
+        li class="item" v-component="item" v-with="model: treeData"
+    #json data-json="#{@tree}"
+    script type="text/x-template" id="item-template"
+      div v-class="bold: isFolder" v-on="click: toggle"
+        template v-if="isFolder" {{model.name}}
+        template v-if="!isFolder"
+          a href="/views/{{model.full}}" target="_blank" {{model.name}}
+        span v-if="isFolder" [{{open ? '-' : '+'}}]
+      ul v-show="open" v-if="isFolder"
+        li class="item" v-repeat="model: model.children" v-component="item"
+    script src="/js/app.js"
