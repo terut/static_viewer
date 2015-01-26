@@ -22,9 +22,8 @@ Vue.component('item', {
   }
 })
 
-// boot up the demo
-var demo = new Vue({
-  el: '#demo',
+var tree = new Vue({
+  el: '#tree',
   data: {
     treeData: data
   }

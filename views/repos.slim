@@ -19,7 +19,7 @@ html
           - @g.branches.remote.each do |remote|
             option value="#{remote.name}"=remote.name
         input type="submit" name="" value="select"
-      ul id="demo"
+      ul id="tree"
         li class="item" v-component="item" v-with="model: treeData"
     #json data-json="#{@tree}"
     script type="text/x-template" id="item-template"
