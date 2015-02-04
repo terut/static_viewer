@@ -1,21 +1,13 @@
-doctype html
-html
-  head
-    title Static Viewer
-    link rel="stylesheet" href="/css/style.css" type="text/css"
-  body
-    header
-      h1 Static Viewer
-    section#content
-      h2 GitHub Repository
-      form action="/repos" method="post"
-        span Name:
-        input name="name" type="text"
-        span URL:
-        input name="url" type="text" size="50px"
-        input type="submit" name="" value="create"
-      h3 Repositories
-      ul
-        - @repos.each do |repo|
-          li
-            a href="/repos/#{repo}"=repo
+section#content
+  h2 GitHub Repository
+  form action="/repos" method="post"
+    span Name:
+    input name="name" type="text"
+    span URL:
+    input name="url" type="text" size="50px"
+    input type="submit" name="" value="create"
+  h3 Repositories
+  ul
+    - @repos.each do |repo|
+      li
+        a href="/repos/#{repo}"=repo

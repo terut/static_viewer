@@ -13,6 +13,8 @@ module StaticViewer
       '/' => ENV['ALLOW_IPS'].split(',')
     } if ENV['ALLOW_IPS']
 
+    set :slim, layout: :application
+
     get '/' do
       @repos = Dir.chdir("#{settings.root}/repos") { Dir.glob("*") }
 
