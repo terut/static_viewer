@@ -1,17 +1,24 @@
+h1.hidden Repository
 section#content
-  form action="/repos/#{params[:name]}/pull" method="post"
-    input type="submit" name="" value="Sync"
+  div.sync-repo
+    h2 Repository
+    form action="/repos/#{params[:name]}/pull" method="post"
+      input type="submit" name="" value="Sync"
+  div.status-repo
+    form action="/repos/#{params[:name]}/checkout" method='post'
+      div
+        span.label Current branch:
+        span.bold= @g.current_branch
+      div
+        span.label Select branch:
+        select name="branch"
+          - @g.branches.remote.each do |remote|
+            option value="#{remote.name}"=remote.name
+        input type="submit" name="" value="select"
   div
-    span Current branch:
-    span.bold= @g.current_branch
-  form action="/repos/#{params[:name]}/checkout" method='post'
-    span Select branch:
-    select name="branch"
-      - @g.branches.remote.each do |remote|
-        option value="#{remote.name}"=remote.name
-    input type="submit" name="" value="select"
-  ul id="tree"
-    li class="item" v-component="item" v-with="model: treeData"
+    h2 Tree
+    ul id="tree"
+      li class="item" v-component="item" v-with="model: treeData"
 #json data-json="#{@tree}"
 script type="text/x-template" id="item-template"
   div v-class="bold: isFolder" v-on="click: toggle"
