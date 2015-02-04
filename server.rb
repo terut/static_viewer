@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'json'
+require 'pathname'
 require 'git'
 require 'pp'
 
@@ -51,7 +52,6 @@ module StaticViewer
       g.checkout
 
       if params[:branch] != "master" && !params[:branch].start_with?("HEAD") && g.is_local_branch?(params[:branch])
-        pp "hoge"
         g.branch(params[:branch]).delete
       end
       g.checkout(params[:branch])
@@ -60,7 +60,8 @@ module StaticViewer
     end
 
     get '/views/*' do
-      send_file(params[:splat].first)
+      file = "#{settings.root}/#{params[:splat].first}"
+      send_file(file)
     end
 
     private
@@ -76,7 +77,7 @@ module StaticViewer
         end
 
         child[:name] = entry
-        child[:full] = full_path
+        child[:full] = Pathname(full_path).relative_path_from(Pathname(settings.root))
         data << child
       end
       data
