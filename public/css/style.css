@@ -66,6 +66,9 @@ select {
 header {
   height: 100%;
 }
+header a, header a:hover {
+  color: #efefef;
+}
 .hidden {
   display: none;
 }
