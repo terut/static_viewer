@@ -70,14 +70,28 @@ header {
   display: none;
 }
 .logo {
-  padding: 10px 30px;
-  width: 130px;
+  padding: 10px 20px;
+  width: 30px;
   font-size: 2.5em;
   font-weight: bold;
   background: #c0392b;
 }
 #container {
   padding: 30px;
+}
+.topic {
+  text-align: center;
+}
+.topic h1 {
+  font-size: 3.0em;
+  font-weight: bold;
+}
+.topic p {
+  font-size: 1.5em;
+}
+.content {
+  text-align: center;
+  margin-top: 100px;
 }
 .item {
   cursor: pointer;

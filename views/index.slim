@@ -1,4 +1,7 @@
-section#content
+section.topic
+  h1 KOTEN
+  p Static Resource Viewer for GitHub Repositories
+section.content
   h2 GitHub Repository
   form action="/repos" method="post"
     label Name:
@@ -6,7 +9,7 @@ section#content
     label URL:
     input name="url" type="text" size="50px" class="repo-url"
     input type="submit" name="" value="Add"
-  h3 Repositories
+  h3 Viewable Repositories
   ul
     - @repos.each do |repo|
       li

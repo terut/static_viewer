@@ -1,7 +1,7 @@
 h1.hidden Repository
 section#content
   div.sync-repo
-    h2 Repository
+    h2="Repository[ #{params[:name]} ]"
     form action="/repos/#{params[:name]}/pull" method="post"
       input type="submit" name="" value="Sync"
   div.status-repo
