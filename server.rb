@@ -61,9 +61,13 @@ module StaticViewer
       redirect "/repos/#{params[:name]}"
     end
 
-    get '/views/*' do
-      file = "#{settings.root}/#{params[:splat].first}"
-      send_file(file)
+    get "/views/repos/:name/*" do
+      file = "#{settings.root}/repos/#{params[:name]}/#{params[:splat].first}"
+      if File.exist?(file)
+        send_file(file)
+      else
+        slim :"404"
+      end
     end
 
     private
