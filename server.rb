@@ -73,7 +73,7 @@ module StaticViewer
     private
     def tree(path)
       data = []
-      Dir.foreach(path) do |entry|
+      Dir.entries(path).sort.each do |entry|
         next if entry.start_with?('.')
 
         child = {}
