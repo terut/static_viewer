@@ -2,7 +2,7 @@
 source "https://rubygems.org"
 
 gem 'sinatra'
-gem 'thin'
+gem 'puma'
 gem 'slim'
 gem 'git'
 gem "rack-contrib", require: "rack/contrib"
